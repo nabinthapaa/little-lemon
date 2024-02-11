@@ -17,9 +17,10 @@ export const authOptions: AuthOptions = {
         const { email, password } = credentials;
         try {
           await ConnectToDB();
-          const user = await User.findOne({ email });
-          const is_correct_password = bcrypt.compare(password, user.password);
+          const user = await User.findOne({ email }).lean();
+          const is_correct_password = bcrypt.compare(password, user?.password);
           if (!is_correct_password) return null;
+          delete user?.password;
           return user;
         } catch (error) {
           if (error instanceof Error) {

@@ -8,9 +8,24 @@ export interface BookingData {
   location: string;
   phone: string;
   email: string;
+  userId?: string;
+  name: string;
+}
+
+export interface BookingError {
+  date: boolean;
+  time: boolean;
+  noOfPerson: boolean;
+  occassion: boolean;
+  location: boolean;
+  phone: boolean;
+  email: boolean;
+  userId?: boolean;
+  name: boolean;
 }
 
 export interface BookingFormProps extends BookingData {
+  error: BookingError;
   updateData: (field: Partial<BookingData>) => void;
 }
 

@@ -420,3 +420,53 @@ footer {
   color: var(--accent-gray);
   text-align: center;
 }
+
+.booking_card {
+  width: fit-content;
+  border: 2px solid var(--secondary-orange);
+  border-radius: 1em;
+  padding: 2em;
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
+.ticket-number {
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: var(--secondary-orange);
+  text-underline-offset: 0.2em;
+}
+
+.booking_card span {
+  color: var(--primary-green);
+  font-weight: bold;
+  place-self: end;
+}
+
+.booking_card span.booker {
+  color: var(--secondary-orange);
+  place-self: start;
+}
+
+.ticket-body {
+  margin: 0.45em;
+}
+
+.ticket-body p {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 0.6em;
+}
+
+.bookings_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 2em;
+}
+
+.bookings_container .booking_card {
+  margin: auto;
+  min-width: 450px;
+  margin-top: 0.5em;
+}

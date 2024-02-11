@@ -9,7 +9,7 @@ function Footer() {
       <div className="footer-wrapper">
         <div className="footer-logo-wrapper">
           <Image
-            src="./assets/Logo.svg"
+            src="/assets/Logo.svg"
             alt="Little Lemon logo"
             width={500}
             height={500}
