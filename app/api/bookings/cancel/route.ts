@@ -1,20 +1,18 @@
 import Booking from "@/models/Booking";
 import { ConnectToDB } from "@/utils/connectToDB";
-import { AnyObject } from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function PATCH(req: NextRequest) {
   try {
-    const searchParams = req.nextUrl.searchParams;
-    const id = searchParams.get("id");
+    const { _id } = await req.json();
     await ConnectToDB();
-    const bookings = await Booking.find({ userId: id })
-      .populate("userId")
-      .lean();
+    const booking = await Booking.findOne({ _id });
+    booking.status = "canceled";
+    booking.save();
+
     return NextResponse.json({
-      message: "Data Retrieved",
+      message: "Updated Succesfully",
       status: 200,
-      data: bookings,
     });
   } catch (error) {
     if (error instanceof Error) {

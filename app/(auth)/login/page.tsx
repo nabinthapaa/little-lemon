@@ -1,7 +1,9 @@
 "use client";
 import { AuthData } from "@/types/props";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Router } from "next/router";
 import React, { FormEvent, useState } from "react";
 
 function validateData(data: AuthData) {
@@ -27,6 +29,12 @@ function Login() {
     email: "",
     password: "",
   });
+  const router = useRouter();
+  const session = useSession();
+
+  if (session.status === "authenticated") {
+    router.replace("/");
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,5 +1,7 @@
-import { date_fmt } from "@/utils/utils";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import React, { Suspense } from "react";
+import Ticket from "./components/Ticket";
 
 export async function page({
   searchParams: { id },
@@ -22,58 +24,31 @@ async function Booking({ id }: { id: string }) {
   );
   const { data } = await res.json();
 
-  const getUser = async () => {
-    try {
-      const res = await fetch(
-        `${process.env.BASE_URL}/api/user?id=${data.userId}`
-      );
-      return (await res.json()).data.email;
-    } catch (e) {
-      if (e instanceof Error) {
-        console.log(e.message);
-      }
-    }
+  const remove = async (_id: string) => {
+    "use server";
+    await fetch(`${process.env.BASE_URL}/api/bookings/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ _id }),
+    });
+    redirect("/booking/my-tickets");
   };
-  return (
-    <div className="booking_card">
-      <p className="ticket-number">
-        <span>Ticket No:</span>
-        {data._id}
-      </p>
-      <div className="ticket-body">
-        <p>
-          <span>Name:</span>
-          {data.name}
-        </p>
-        <p>
-          <span>Time:</span>
-          {data.time}
-        </p>
-        <p>
-          <span>Date:</span>
-          {date_fmt.format(new Date(data.date))}
-        </p>
-        <p>
-          <span>People:</span>
-          {data.noOfPerson}
-        </p>
-        <p>
-          <span>Location:</span>
-          {data.location}
-        </p>
-        <p>
-          <span>Booked by:</span>
-          <Suspense fallback={<span>Getting info</span>}>
-            <span className="booker">{getUser()}</span>
-          </Suspense>
-        </p>
-        <p>
-          <span>Booked to:</span>
-          {data.email}
-        </p>
-      </div>
-    </div>
-  );
+
+  const cancel = async (_id: string) => {
+    "use server";
+    await fetch(`${process.env.BASE_URL}/api/bookings/cancel`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ _id }),
+    });
+    revalidatePath("/booking");
+  };
+
+  return <Ticket data={data} cancel={cancel} remove={remove} />;
 }
 
 export default page;

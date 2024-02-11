@@ -470,3 +470,32 @@ footer {
   min-width: 450px;
   margin-top: 0.5em;
 }
+
+.my-order-button {
+  background-color: var(--secondary-orange);
+}
+
+.profile-buttons a:hover {
+  background-color: var(--accent-gray);
+  color: var(--accent-dark-gray);
+}
+
+.my-order-button:hover {
+  outline-color: var(--secondary-orange);
+}
+
+.ticket-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cancel-ticket {
+  background: var(--primary-yellow);
+  padding: 0.45em 2em;
+  border-radius: 1em;
+  font-weight: bold;
+}
+
+.delete-ticket {
+  background-color: var(--secondary-orange);
+}

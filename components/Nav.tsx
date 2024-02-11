@@ -1,5 +1,5 @@
 "use client";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -20,19 +20,12 @@ function Nav() {
           </li>
         ))}
         {session?.user ? (
-          <li>
-            <Link href={""} onClick={() => signOut()}>
-              Log out
-            </Link>
+          <li className={`${pathname === "/profile" ? "active" : ""}`}>
+            <Link href={"/profile"}>Profile</Link>
           </li>
         ) : (
-          <li>
-            <Link
-              className={`${pathname === "login" ? "active" : ""}`}
-              href={"/login"}
-            >
-              Log in
-            </Link>
+          <li className={`${pathname === "/login" ? "active" : ""}`}>
+            <Link href={"/login"}>Log in</Link>
           </li>
         )}
       </ul>

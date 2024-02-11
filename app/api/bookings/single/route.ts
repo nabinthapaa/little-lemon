@@ -7,11 +7,14 @@ export async function GET(req: NextRequest) {
     const searchParams = req.nextUrl.searchParams;
     const id = searchParams.get("id");
     await ConnectToDB();
-    const result = await Booking.findOne({ _id: id });
+    const result = await Booking.findOne({ _id: id }).populate("userId").lean();
+    //@ts-ignore
+    delete result?.userId?.password;
+    console.log(result);
     return NextResponse.json({
       message: "Booking Successfully found",
       status: 200,
-      data: { ...result["_doc"] },
+      data: result,
     });
   } catch (e) {
     if (e instanceof Error) {

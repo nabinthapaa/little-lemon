@@ -1,7 +1,8 @@
 "use client";
 import { AuthData } from "@/types/props";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
 
 function validateData(data: AuthData) {
@@ -30,6 +31,11 @@ function Login() {
   });
 
   const router = useRouter();
+  const session = useSession();
+
+  if (session.status === "authenticated") {
+    router.replace("/");
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -43,7 +49,6 @@ function Login() {
           },
           body: JSON.stringify(loginInfo),
         });
-        console.log(res);
         if (res.ok) {
           router.replace("/");
         } else {
