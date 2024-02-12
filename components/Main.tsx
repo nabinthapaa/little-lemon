@@ -11,7 +11,7 @@ function Main() {
       <section className="special-container">
         <div className="special-title-wrapper">
           <p className="title-special">This Weeks Specials !</p>
-          <Link href="/order-online" className="online-menu-button">
+          <Link href="/menu" className="online-menu-button">
             Online Menu
           </Link>
         </div>

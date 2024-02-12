@@ -148,6 +148,7 @@ option {
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
   padding-bottom: 2em;
+  display: grid;
 }
 
 .specials > *:not(:first-child) {
@@ -159,6 +160,7 @@ option {
   width: inherit;
   height: 250px;
   overflow: hidden;
+  position: relative;
 }
 
 .special-name-price {
@@ -178,6 +180,7 @@ option {
 
 .special-bottom-wrapper {
   margin-bottom: 1rem;
+  width: 90%;
 }
 
 .special-container {
@@ -508,4 +511,45 @@ footer {
 
 .booking_card.canceled .ticket-number {
   text-decoration: line-through;
+}
+
+.menu-section-header {
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.menu-section-header-wrapper {
+  position: relative;
+  padding-block: 1em;
+}
+
+.menu-section-header-wrapper:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--accent-dark-gray);
+  border-radius: 100vw;
+}
+
+.menu-item-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.menu-items {
+  display: grid;
+  gap: 0.25em;
+}
+
+.menu-items:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+.menu-ingredients {
+  font-size: 0.65em;
+  opacity: 0.7;
+}
+
+.menu-price {
+  place-self: flex-end;
 }

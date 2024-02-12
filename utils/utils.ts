@@ -8,7 +8,12 @@ export const date_fmt = new Intl.DateTimeFormat("en-US", {
   day: "numeric",
 });
 
-export function capitalize(word: string): string {
+export const currency_fmt = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+export function capitalize(word: string) {
   return word.charAt(0).toUpperCase() + word.substring(1);
 }
 
