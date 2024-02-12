@@ -14,7 +14,6 @@ export function capitalize(word: string): string {
 
 export function checkTime(time: string): boolean {
   const hour = Number(time.split(":")[0]);
-  console.log(hour >= 10 && hour <= 20);
   if (hour >= 10 && hour <= 20) {
     return true;
   }

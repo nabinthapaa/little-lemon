@@ -9,7 +9,7 @@ async function addBooking(data: BookingData) {
     const booking = await Booking.create({ ...data });
     return booking;
   } catch (e) {
-    console.log(e);
+    if (e instanceof Error) console.log(e.message);
     return new Error("Failed to add booking");
   }
 }

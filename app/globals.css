@@ -435,6 +435,7 @@ footer {
   text-decoration: underline;
   text-decoration-color: var(--secondary-orange);
   text-underline-offset: 0.2em;
+  transition: text-decoration 0.5s ease-in;
 }
 
 .booking_card span {
@@ -498,4 +499,13 @@ footer {
 
 .delete-ticket {
   background-color: var(--secondary-orange);
+}
+
+.booking_card.canceled {
+  background-color: #fefeb4;
+  color: #008080;
+}
+
+.booking_card.canceled .ticket-number {
+  text-decoration: line-through;
 }

@@ -9,7 +9,9 @@ function Ticket({ data, cancel, remove }: any) {
     return <p>{data.message}</p>;
   }
   return (
-    <div className="booking_card">
+    <div
+      className={`booking_card ${data.status === "canceled" ? "canceled" : ""}`}
+    >
       <p className="ticket-number">
         <span>Ticket No:</span>
         {data._id}

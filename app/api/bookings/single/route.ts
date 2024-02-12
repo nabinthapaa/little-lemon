@@ -10,7 +10,6 @@ export async function GET(req: NextRequest) {
     const result = await Booking.findOne({ _id: id }).populate("userId").lean();
     //@ts-ignore
     delete result?.userId?.password;
-    console.log(result);
     return NextResponse.json({
       message: "Booking Successfully found",
       status: 200,

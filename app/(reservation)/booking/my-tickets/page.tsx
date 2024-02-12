@@ -1,7 +1,6 @@
-import action from "@/app/action";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import React, { Suspense } from "react";
 import Ticket from "../components/Ticket";
 
@@ -54,6 +53,11 @@ async function Bookings({ id, email }: { [key: string]: string }) {
     });
     revalidatePath("/booking/my-tickets");
   };
+  if (data1.length === 0) {
+    return (
+      <p className="container font-bold text-lg">You have no bookings made</p>
+    );
+  }
 
   return data1.map((data: any) => (
     <Ticket key={data._id} data={data} cancel={cancel} remove={remove} />

@@ -58,7 +58,6 @@ function ReserveTable() {
 
   function updateData(field: Partial<BookingData>) {
     setData((prev) => ({ ...prev, ...field }));
-    console.log(data);
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
